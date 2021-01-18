@@ -28,12 +28,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-      seconds: 6,
+      seconds: 10,
       routeName: "/",
-      backgroundColor: Colors.white,
-
-      image: Image.network('http://bestanimations.com/Food/food-animated-gif-6.gif'),
-      title: Text('\n\n\nTasteDiary',
+     backgroundColor: Colors.lime[100],
+      title: Text('\nTasteDiary\n',
         style: GoogleFonts.lobster(
             textStyle: TextStyle(
                 fontSize: 38.0,
@@ -41,9 +39,12 @@ class _MyAppState extends State<MyApp> {
             )
         ),
       ),
+      image: Image.asset('assets/pics/PngItem_778456.png',
+      fit: BoxFit.cover,),
 
-      loaderColor: Colors.white,
-      photoSize: 150.0,
+
+      loaderColor: Colors.redAccent[700],
+      photoSize: 110.0,
       navigateAfterSeconds: MainScreen(),
     );
   }

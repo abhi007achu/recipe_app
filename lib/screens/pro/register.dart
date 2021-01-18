@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipeapp/data/database_helper.dart';
@@ -7,7 +6,6 @@ import 'package:recipeapp/models/user1.dart';
 import 'package:recipeapp/screens/pro/loginpage.dart';
 import 'package:recipeapp/screens/pro/pro_home.dart';
 
-import 'package:recipeapp/screens/pro/pro_login2.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -149,16 +147,8 @@ class _RegisterState  extends State<Register> {
                             fontSize: 22.0,
                             fontWeight: FontWeight.bold)
                     ),),
-                  /**
-                      validator: (String _password) {
-                      Pattern pattern= r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
-                      RegExp regex=RegExp(pattern);
-                      if (!regex.hasMatch(_password ))
-                      return 'Password must contain number,uppercase and special characters';
-                      else
-                      return null;
-                      },
-                   **/
+
+                  obscureText: true,
                   validator: (String _password) {
                     if (_password.length <8 )
                       return 'Password length should be 8';
@@ -248,11 +238,11 @@ class _RegisterState  extends State<Register> {
       setState(() {
         _isLoading = true;
         form.save();
-        var user1 = new User1(_name, _username, _password,phno,email);
+        var user1 = new User1(_name, _username, _password,phno,email,null,null,null);
         var db = new DatabaseHelper();
         db.saveUser1(user1);
         _isLoading = false;
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>pro_Login2(_username,_password)),);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()),);
         if (formKey.currentState.validate()) {}
       });
     }

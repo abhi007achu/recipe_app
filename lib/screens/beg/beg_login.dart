@@ -48,7 +48,7 @@ class _beg_LoginState extends State<beg_Login>  implements LoginPageContract {
 
   void _showSnackBar(String text) {
     scaffoldKey.currentState.showSnackBar(new SnackBar(
-      content: new Text(text),
+      content: new Text("Invalid Username or Password"),
     ));
   }
 

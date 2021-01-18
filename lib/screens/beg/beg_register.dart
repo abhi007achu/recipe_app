@@ -7,7 +7,6 @@ import 'package:recipeapp/screens/beg/beg_login.dart';
 import 'package:recipeapp/data/database_helper.dart';
 import 'package:recipeapp/models/user.dart';
 
-import 'beg_login2.dart';
 
 class beg_reg extends StatefulWidget {
   @override
@@ -231,7 +230,7 @@ class _beg_regState  extends State<beg_reg> {
       setState(() {
         _isLoading = true;
         form.save();
-        var user = new User(_name, _username, _password,phno,email,null);
+        var user = new User(_name, _username, _password,phno,email,null,null,null);
         var db = new DatabaseHelper();
         db.saveUser(user);
         _isLoading = false;

@@ -43,29 +43,28 @@ class DatabaseHelper {
 
   initDb() async {
     Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, "taste1.db");
+    String path = join(documentDirectory.path, "tastediary2.db");
     var ourDb = await openDatabase(path, version: 1, onCreate: _onCreate);
     return ourDb;
   }
 
   void _onCreate(Database db, int version) async {
     await db.execute(
-        "CREATE TABLE User(id INTEGER PRIMARY KEY, name TEXT, username TEXT, password TEXT,phno INTEGER,email TEXT,flaglogged TEXT)");
+        "CREATE TABLE User(id INTEGER PRIMARY KEY, name TEXT, username TEXT, password TEXT,phno INTEGER,email TEXT,flaglogged TEXT,fav1 TEXT,fav2 TEXT)");
 
     print("User is created");
     await db.execute(
-        "CREATE TABLE User1(pid INTEGER PRIMARY KEY, pname TEXT, pusername TEXT, ppassword TEXT,pphno INTEGER,pemail TEXT)");
+        "CREATE TABLE User1(pid INTEGER PRIMARY KEY, pname TEXT, pusername TEXT, ppassword TEXT,pphno INTEGER,pemail TEXT,flaglogged TEXT,pfav1 TEXT,pfav2 TEXT)");
 
     print("User1 is created");
 
     await db.execute(
         "CREATE TABLE Dish(dishid INTEGER PRIMARY KEY, dishname TEXT, time TEXT, cal INTEGER,ingr INTEGER,method TEXT, image TEXT)");
     print("Dish is created");
+
     await db.execute(
         "CREATE TABLE Recipe(recipeid INTEGER PRIMARY KEY, dname TEXT, rec1 TEXT,rec2 TEXT,rec3 TEXT,rec4 TEXT,rec5 TEXT,rec6 TEXT,rec7 TEXT,rec8 TEXT,rec9 TEXT,rec10 TEXT,rec11 TEXT,rec12 TEXT,rec13 TEXT)");
     print("Recipe is created");
-
-    print("Table is created");
 
 
   }
@@ -102,9 +101,10 @@ class DatabaseHelper {
     if (maps.length > 0) {
       print("User Exist !!!");
       return user;
-    }else {
-      return null;
-    }
+    }else
+      {
+         return null;
+      }
   }
 
   //pro table
@@ -125,25 +125,26 @@ class DatabaseHelper {
     int res = await dbClient.delete("User1");
     return res;
   }
-  /**
-      Future<User> selectUser(User user) async{
-      print("Select User");
-      print(user.username);
-      print(user.password);
-      var dbClient = await db;
-      List<Map> maps = await dbClient.query(tableUser,
-      columns: [columnUserName, columnPassword],
-      where: "$columnUserName = ? and $columnPassword = ?",
-      whereArgs: [user.username,user.password]);
-      print(maps);
-      if (maps.length > 0) {
-      print("User Exist !!!");
-      return user;
-      }else {
-      return null;
+
+  Future<User1> selectUser1(User1 user1) async{
+    print("Select User1");
+    print(user1.pusername);
+    print(user1.ppassword);
+    var dbClient1 = await db;
+    List<Map> maps = await dbClient1.query(tableUser1,
+        columns: [columnpUserName, columnpPassword],
+        where: "$columnpUserName = ? and $columnpPassword = ?",
+        whereArgs: [user1.pusername,user1.ppassword]);
+    print(maps);
+    if (maps.length > 0) {
+      print("User1 Exist !!!");
+      return user1;
+      }else
+        {
+          return null;
+        }
       }
-      }
-   **/
+
 
 
 
@@ -165,6 +166,7 @@ class DatabaseHelper {
     int res = await dbClient1.delete("Dish");
     return res;
   }
+  /*
   Future<Dish> selectDish(Dish dishes) async{
     print("Select Dish");
     print(dishes.dishname);
@@ -182,7 +184,7 @@ class DatabaseHelper {
       return null;
     }
   }
-
+  */
   //recipe table
   //insertion
   Future<int> saveRecipe(Recipe recipes) async {
@@ -201,6 +203,7 @@ class DatabaseHelper {
     int res = await dbClient2.delete("Recipe");
     return res;
   }
+  /*
   Future<Recipe> selectRecipe(Recipe recipes) async{
     print("Select Dish");
     print(recipes.dname);
@@ -218,5 +221,5 @@ class DatabaseHelper {
       return null;
     }
   }
-
+  */
 }

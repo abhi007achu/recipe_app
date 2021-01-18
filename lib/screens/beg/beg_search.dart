@@ -34,7 +34,7 @@ class _begsearchState extends State<begsearch> {
     "https://www.archanaskitchen.com/images/archanaskitchen/1-Author/garimasgautam-gmail.com/Nepalese_Veg_Pulao.jpg",
     "https://apollosugar.com/wp-content/uploads/2018/12/Masala-Dosa.jpg",
     "https://cookbook.pfeiffer.net.au/files/sambarVegetable.jpg",
-    "https://i0.wp.com/www.antoskitchen.com/wp-content/uploads/2017/01/Masala-Vada.jpg?w=512&ssl=1",
+    "http://saltandtamarind.com/wp-content/uploads/2017/04/3-4.jpg",
     "https://i.ytimg.com/vi/2WtThIyEQBA/maxresdefault.jpg",
     "https://tse4.mm.bing.net/th?id=OIP.56jkXowu1u5nrcXQKnJiawHaE7&pid=Api&P=0&w=230&h=154",
   ];

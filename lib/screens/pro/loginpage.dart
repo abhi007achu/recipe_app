@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:recipeapp/data/database_helper.dart';
-import 'package:recipeapp/models/user.dart';
-
+import 'package:recipeapp/models/user1.dart';
+import 'package:recipeapp/screens/pro/pro_loginpresenter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipeapp/screens/pro/pro_home.dart';
 import 'package:recipeapp/screens/pro/register.dart';
@@ -12,13 +12,18 @@ class Login extends StatefulWidget {
   _LoginState createState() => new _LoginState();
 }
 
-class _LoginState extends State<Login>  {
+class _LoginState extends State<Login>  implements LoginPageContract {
   BuildContext _ctx;
   bool _isLoading = false;
   final formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
 
   String _email, _password;
+  LoginPagePresenter _presenter;
+
+  _LoginState() {
+    _presenter = new LoginPagePresenter(this);
+  }
 
 
 
@@ -32,18 +37,16 @@ class _LoginState extends State<Login>  {
 
     if (form.validate()) {
       setState(() {
-        //_isLoading = true;
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>proHomeScreen()),);
+        _isLoading = true;
         form.save();
-        //  _presenter.doLogin(_email, _password);
-        //  _presenter.doLogin(_email, _password);
+        _presenter.doLogin(_email, _password);
       });
     }
   }
 
   void _showSnackBar(String text) {
     scaffoldKey.currentState.showSnackBar(new SnackBar(
-      content: new Text(text),
+      content: new Text("Invalid Username or Password"),
     ));
   }
 
@@ -201,6 +204,7 @@ class _LoginState extends State<Login>  {
                             fontWeight: FontWeight.bold)
                     ),
                   ),
+                  obscureText: true,
                   validator: (String _password) {
                     if (_password.length < 8) return 'Invalid Password';
                     else return null;
@@ -241,10 +245,10 @@ class _LoginState extends State<Login>  {
     });
   }
 
-/** @override
-    void onLoginSuccess(User user) async {
+@override
+    void onLoginSuccess(User1 user) async {
     // TODO: implement onLoginSuccess
-    if(user.username == ""){
+    if(user.pusername == ""){
     _showSnackBar("Login not successful");
     }else{
     _showSnackBar(user.toString());
@@ -258,5 +262,5 @@ class _LoginState extends State<Login>  {
     }else{
     print("Not Logged");
     }
-    }**/
+    }
 }
