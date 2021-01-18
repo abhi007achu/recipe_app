@@ -4,6 +4,7 @@ import 'package:recipeapp/data/database_helper.dart';
 import 'package:recipeapp/models/user.dart';
 import 'package:recipeapp/screens/beg/beg_homscreen.dart';
 import 'package:recipeapp/screens/beg/beg_login.dart';
+import 'package:recipeapp/screens/beg/beg_loginpresenter.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'beg_home.dart';
@@ -14,15 +15,19 @@ class beg_Login extends StatefulWidget {
   _beg_LoginState createState() => new _beg_LoginState();
 }
 
-class _beg_LoginState extends State<beg_Login> {
+class _beg_LoginState extends State<beg_Login>  implements LoginPageContract {
   BuildContext _ctx;
   bool _isLoading = false;
   final formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  String _email, _password;
+  String username, password;
 
+  LoginPagePresenter _presenter;
 
+  _beg_LoginState() {
+    _presenter = new LoginPagePresenter(this);
+  }
 
   void _register() {
     Navigator.push(context, MaterialPageRoute(builder: (context)=>beg_reg()),);
@@ -35,17 +40,8 @@ class _beg_LoginState extends State<beg_Login> {
     if (form.validate()) {
       setState(() {
         _isLoading = true;
-        var db = new DatabaseHelper();
-        var user = new User(null,_email,_password,null,null);
-        var userc= db.selectUser(user);
-        if(userc != null) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => begHomeScreen()),);
-        }
-        else{
-          // TODO: implement onLoginSuccess
-          _showSnackBar("Login not Success..");
-        }
         form.save();
+        _presenter.doLogin(username, password);
       });
     }
   }
@@ -185,7 +181,7 @@ class _beg_LoginState extends State<beg_Login> {
               new Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: new TextFormField(
-                  onSaved: (val) => _email = val,
+                  onSaved: (val) => username = val,
                   decoration: new InputDecoration(labelText: "Username",
                     labelStyle: GoogleFonts.aladin(
                         textStyle: TextStyle(
@@ -193,8 +189,8 @@ class _beg_LoginState extends State<beg_Login> {
                             fontWeight: FontWeight.bold)
                     ),
                   ),
-                  validator: (String _email){
-                    if (_email.length <4) return 'Invalid Username';
+                  validator: (String username){
+                    if (username.length <2) return 'Invalid Username';
                     else return null;
                   },
                 ),
@@ -202,7 +198,7 @@ class _beg_LoginState extends State<beg_Login> {
               new Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: new TextFormField(
-                  onSaved: (val) => _password = val,
+                  onSaved: (val) => password = val,
                   decoration: new InputDecoration(labelText: "Password",
                     labelStyle: GoogleFonts.aladin(
                         textStyle: TextStyle(
@@ -211,8 +207,8 @@ class _beg_LoginState extends State<beg_Login> {
                     ),
                   ),
                   obscureText: true,
-                  validator: (String _password) {
-                    if (_password.length < 8) return 'Invalid Password';
+                  validator: (String password) {
+                    if (password.length < 8) return 'Invalid Password';
                     else return null;
                   },
                 ),
@@ -250,37 +246,25 @@ class _beg_LoginState extends State<beg_Login> {
       _isLoading = false;
     });
   }
-  /**
-      @override
-      void onLoginSuccess(User user) async {
-      // TODO: implement onLoginSuccess
-      if(user.username == ""){
-      _showSnackBar("Login not successful");
-      }else{
-      _showSnackBar(user.toString());
-      }
-      setState(() {
-      _isLoading = false;
-      });
-      if(user.flaglogged == "logged"){
-      print("Logged");
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>begHomeScreen()),);
-      }else{
-      print("Not Logged");
-      }
 
-      }**/
   @override
   void onLoginSuccess(User user) async {
-    if(user != null){
-      Navigator.of(context).pushNamed("/home");
+    // TODO: implement onLoginSuccess
+    if(user.username == ""){
+      _showSnackBar("Login not successful");
     }else{
-      // TODO: implement onLoginSuccess
-      _showSnackBar("Login not Success..");
-      setState(() {
-        _isLoading = false;
-      });
+      _showSnackBar(user.toString());
+    }
+    setState(() {
+      _isLoading = false;
+    });
+    if(user.flaglogged == "logged"){
+      print("Logged");
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>begHomeScreen()),);
+    }else{
+      print("Not Logged");
     }
 
   }
+
 }

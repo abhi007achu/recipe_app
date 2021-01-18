@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:recipeapp/models/user1.dart';
 import 'package:recipeapp/screens/beg/beg_home.dart';
 import 'package:recipeapp/screens/beg/beg_homscreen.dart';
 import 'package:recipeapp/screens/beg/beg_login.dart';
@@ -148,9 +149,10 @@ class _beg_regState  extends State<beg_reg> {
                             fontSize: 22.0,
                             fontWeight: FontWeight.bold)
                     ),),
+                  obscureText: true,
                   validator: (String _password) {
-                    if (_password.length != 8 )
-                      return 'Password length should be 8';
+                    if (_password.length < 8 )
+                      return 'Invalid Password';
                     else
                       return null;
                   },
@@ -229,11 +231,11 @@ class _beg_regState  extends State<beg_reg> {
       setState(() {
         _isLoading = true;
         form.save();
-        var user = new User(_name, _username, _password,phno,email);
+        var user = new User(_name, _username, _password,phno,email,null);
         var db = new DatabaseHelper();
         db.saveUser(user);
         _isLoading = false;
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>beg_Login2(_username,_password,)),);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>beg_Login()),);
         if (formKey.currentState.validate()) {}
       });
     }
