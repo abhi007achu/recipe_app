@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-class begdish extends StatelessWidget {
-  final image;
+class begdish extends StatefulWidget {
+  final String image,name,cal,ing,time,rec1,rec2,rec3,rec4,rec5,rec6,rec7,rec8,rec9,rec10,rec11,rec12,rec13,dec;
+  const begdish (this.image,this.name,this.cal,this.ing,this.time,this.rec1,this.rec2,this.rec3,this.rec4,this.rec5,this.rec6,this.rec7,this.rec8,this.rec9,this.rec10,this.rec11,this.rec12,this.rec13,this.dec);
+  @override
+  _begdishState createState() => _begdishState();
+}
 
-  ///For hero tagging and showing relative image
-  begdish(this.image);
+class _begdishState extends State<begdish> {
+  Color iconcolor= Colors.grey;
   @override
   Widget build(BuildContext context) {
     final size= MediaQuery.of(context).size;
@@ -18,26 +22,26 @@ class begdish extends StatelessWidget {
             Hero(
               child: Container(
                 height: size.height*0.45,
-                child: Image.asset(image, fit: BoxFit.cover,),
+                child: Image.asset(widget.image, fit: BoxFit.cover,),
               ),
               tag:'dish1.jpg',
             ),
             DraggableScrollableSheet(
-              maxChildSize: 1,
-              initialChildSize: 0.6,
-              minChildSize: 0.6,
-              builder: (context, controller)
+                maxChildSize: 1,
+                initialChildSize: 0.6,
+                minChildSize: 0.6,
+                builder: (context, controller)
                 {
                   return SingleChildScrollView(
                     controller: controller,
                     child: Container(
                       padding: const EdgeInsets.all(24),
                       decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40)
-                        )
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(40),
+                              topRight: Radius.circular(40)
+                          )
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,18 +49,30 @@ class begdish extends StatelessWidget {
                           Row(
                             children: <Widget>[
                               Text(
-                                "DISH NAME",
-                                style: GoogleFonts.roboto(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold
+                                widget.name,
+                                style: GoogleFonts.poppins(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold
                                 ),
-                                ),
+                              ),
                               Spacer(),
                               IconButton(
-                                icon: Icon(Icons.favorite),
-                                color: Colors.redAccent,
+
+                                icon: Icon(Icons.favorite,color: iconcolor),
                                 iconSize: 30,
-                                onPressed: () {},
+                                onPressed: () {
+                                  setState(() {
+                                    if(iconcolor==Colors.grey)
+                                    {
+                                      iconcolor= Colors.redAccent;
+                                    }
+                                    else
+                                    {
+                                      iconcolor=Colors.grey;
+                                    }
+
+                                  });
+                                },
                               )
                             ],
                           ),
@@ -70,9 +86,9 @@ class begdish extends StatelessWidget {
                                 Expanded(
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border:
-                                        Border.all(color: Colors.grey[200])
+                                        borderRadius: BorderRadius.circular(10),
+                                        border:
+                                        Border.all(color: Colors.grey[400])
                                     ),
                                     padding:
                                     const EdgeInsets.symmetric(vertical: 16),
@@ -80,47 +96,16 @@ class begdish extends StatelessWidget {
                                       children: <Widget>[
                                         Text(
                                           "Calories",
-                                          style:GoogleFonts.roboto(
-                                            fontSize: 20,
-                                            color:Colors.blueGrey
+                                          style:GoogleFonts.poppins(
+                                              fontSize: 18,
+                                              color:Colors.black
                                           ),
                                         ),
                                         Text(
-                                          "Value",
-                                          style:GoogleFonts.roboto(
+                                          widget.cal,
+                                          style:GoogleFonts.poppins(
                                               fontSize: 17,
-                                              color:Colors.grey[900],
-                                               fontWeight: FontWeight.bold
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox( width: 10,),
-                                Expanded(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border:
-                                        Border.all(color: Colors.grey[200])
-                                    ),
-                                    padding:
-                                    const EdgeInsets.symmetric(vertical: 16),
-                                    child: Column(
-                                      children: <Widget>[
-                                        Text(
-                                          "Ingrediants",
-                                          style:GoogleFonts.roboto(
-                                              fontSize: 20,
-                                              color:Colors.blueGrey
-                                          ),
-                                        ),
-                                        Text(
-                                          "Value",
-                                          style:GoogleFonts.roboto(
-                                              fontSize: 17,
-                                              color:Colors.grey[900],
+                                              color:Colors.black45,
                                               fontWeight: FontWeight.bold
                                           ),
                                         ),
@@ -134,7 +119,38 @@ class begdish extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                         border:
-                                        Border.all(color: Colors.grey[200])
+                                        Border.all(color: Colors.grey[400])
+                                    ),
+                                    padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                    child: Column(
+                                      children: <Widget>[
+                                        Text(
+                                          "Ingredients",
+                                          style:GoogleFonts.poppins(
+                                              fontSize: 18,
+                                              color:Colors.black
+                                          ),
+                                        ),
+                                        Text(
+                                          widget.ing,
+                                          style:GoogleFonts.poppins(
+                                              fontSize: 17,
+                                              color:Colors.black45,
+                                              fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox( width: 10,),
+                                Expanded(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        border:
+                                        Border.all(color: Colors.grey[400])
                                     ),
                                     padding:
                                     const EdgeInsets.symmetric(vertical: 16),
@@ -142,16 +158,16 @@ class begdish extends StatelessWidget {
                                       children: <Widget>[
                                         Text(
                                           "Time",
-                                          style:GoogleFonts.roboto(
-                                              fontSize: 20,
-                                              color:Colors.blueGrey
+                                          style:GoogleFonts.poppins(
+                                              fontSize: 18,
+                                              color:Colors.black
                                           ),
                                         ),
                                         Text(
-                                          "Value",
-                                          style:GoogleFonts.roboto(
+                                          widget.time,
+                                          style:GoogleFonts.poppins(
                                               fontSize:17 ,
-                                              color:Colors.grey[900],
+                                              color:Colors.black45,
                                               fontWeight: FontWeight.bold
                                           ),
                                         ),
@@ -167,7 +183,7 @@ class begdish extends StatelessWidget {
                           ),
                           Text(
                             "RECIPE",
-                            style: GoogleFonts.roboto(
+                            style: GoogleFonts.poppins(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
@@ -176,55 +192,143 @@ class begdish extends StatelessWidget {
                             height: 10,
                           ),
                           Text(
-                            'recipe 1',
-                                style:GoogleFonts.roboto(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.blueGrey,
-                                ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            'recipe 2',
-                            style:GoogleFonts.roboto(
+                            widget.rec1,
+                            style:GoogleFonts.poppins(
                               fontSize: 17,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
                             ),
                           ),
                           SizedBox(
                             height: 8,
                           ),
                           Text(
-                            'recipe 3',
-                            style:GoogleFonts.roboto(
+                            widget.rec2,
+                            style:GoogleFonts.poppins(
                               fontSize: 17,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
                             ),
                           ),
                           SizedBox(
                             height: 8,
                           ),
                           Text(
-                            'recipe 4',
-                            style:GoogleFonts.roboto(
+                            widget.rec3,
+                            style:GoogleFonts.poppins(
                               fontSize: 17,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
                             ),
                           ),
                           SizedBox(
                             height: 8,
                           ),
                           Text(
-                            'recipe 5',
-                            style:GoogleFonts.roboto(
+                            widget.rec4,
+                            style:GoogleFonts.poppins(
                               fontSize: 17,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec5,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec6,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec7,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec8,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec9,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec10,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec11,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec12,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec13,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
                             ),
                           ),
                           SizedBox(
@@ -232,7 +336,7 @@ class begdish extends StatelessWidget {
                           ),
                           Text(
                             "COOKING METHOD",
-                            style: GoogleFonts.roboto(
+                            style: GoogleFonts.poppins(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
@@ -241,14 +345,11 @@ class begdish extends StatelessWidget {
                             height: 10,
                           ),
                           Text(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id iaculis elit. Mauris congue nisl at est placerat egestas. Aliquam bibendum placerat pretium."" Nullam tincidunt massa sed velit sollicitudin pulvinar. Phasellus "
-                                "vitae nisi justo. Quisque pulvinar pretium mauris, eget condimentum felis pretium ut. Cras tempor convallis diam, et consectetur tellus interdum quis. Sed imperdiet auctor metus in vulputate. Interdum et malesuada fames ac "
-                                "ante ipsum primis in faucibus.Phasellus et faucibus sem. Nunc at nibh lacinia mauris ullamcorper euismod malesuada at libero. Cras quis egestas est. Donec dapibus tincidunt tincidunt. Maecenas est enim, interdum sed eleifend a, "
-                                "hendrerit eleifend diam.",
-                            style: GoogleFonts.roboto(
+                            widget.dec,
+                            style: GoogleFonts.poppins(
                               fontSize: 17,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
                             ),
                           ),
                         ],

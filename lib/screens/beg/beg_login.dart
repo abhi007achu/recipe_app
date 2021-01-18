@@ -1,11 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:recipeapp/data/database_helper.dart';
 import 'package:recipeapp/models/user.dart';
 import 'package:recipeapp/screens/beg/beg_homscreen.dart';
 import 'package:recipeapp/screens/beg/beg_login.dart';
-import 'package:recipeapp/screens/beg/begLoginPresenter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import 'package:google_fonts/google_fonts.dart';
 import 'beg_home.dart';
 import 'beg_register.dart';
 
@@ -14,7 +14,7 @@ class beg_Login extends StatefulWidget {
   _beg_LoginState createState() => new _beg_LoginState();
 }
 
-class _beg_LoginState extends State<beg_Login> implements LoginPageContract {
+class _beg_LoginState extends State<beg_Login> {
   BuildContext _ctx;
   bool _isLoading = false;
   final formKey = new GlobalKey<FormState>();
@@ -22,11 +22,7 @@ class _beg_LoginState extends State<beg_Login> implements LoginPageContract {
 
   String _email, _password;
 
-  LoginPagePresenter _presenter;
 
-  _LoginPageState() {
-    _presenter = new LoginPagePresenter(this);
-  }
 
   void _register() {
     Navigator.push(context, MaterialPageRoute(builder: (context)=>beg_reg()),);
@@ -38,12 +34,18 @@ class _beg_LoginState extends State<beg_Login> implements LoginPageContract {
 
     if (form.validate()) {
       setState(() {
-        //_isLoading = true;
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>begHomeScreen()),);
-
+        _isLoading = true;
+        var db = new DatabaseHelper();
+        var user = new User(null,_email,_password,null,null);
+        var userc= db.selectUser(user);
+        if(userc != null) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => begHomeScreen()),);
+        }
+        else{
+          // TODO: implement onLoginSuccess
+          _showSnackBar("Login not Success..");
+        }
         form.save();
-        //  _presenter.doLogin(_email, _password);
-
       });
     }
   }
@@ -61,15 +63,16 @@ class _beg_LoginState extends State<beg_Login> implements LoginPageContract {
       padding: const EdgeInsets.all(8.0),
       child: ButtonTheme(
         padding: EdgeInsets.only(),
-        buttonColor: Colors.white70,
+        buttonColor: Colors.greenAccent,
         height: 50,
         minWidth:350,
         child: RaisedButton(
           child: Text(
             'Login',
-            style: TextStyle(
-              color: Colors.teal[800],
-              fontSize: 20,
+            style: GoogleFonts.aladin(
+                textStyle: TextStyle(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold)
             ),
           ),
           shape: RoundedRectangleBorder(
@@ -87,15 +90,16 @@ class _beg_LoginState extends State<beg_Login> implements LoginPageContract {
       padding: const EdgeInsets.all(8.0),
       child: ButtonTheme(
         padding: EdgeInsets.only(),
-        buttonColor: Colors.white70,
+        buttonColor: Colors.greenAccent,
         height: 50,
         minWidth: 350,
         child: RaisedButton(
           child: Text(
             'Register',
-            style: TextStyle(
-              color: Colors.teal[800],
-              fontSize: 20,
+            style: GoogleFonts.aladin(
+                textStyle: TextStyle(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold)
             ),
           ),
           shape: RoundedRectangleBorder(
@@ -127,25 +131,52 @@ class _beg_LoginState extends State<beg_Login> implements LoginPageContract {
             borderRadius: BorderRadius.circular(30),
           ),
           onPressed: () {
-            //_doc();
-
+            _submit();
           },
         ),
       ),
     );
+
     var loginForm = new Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        new Text(
-          " \n Login",
-          style: GoogleFonts.lato(
-              textStyle:TextStyle(
-                color: Colors.teal[800],
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              )
+        Container(
+          child: Stack(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.fromLTRB(15.0,80.0,0.0,0.0),
+                  child: Text('Hello',
+                    style: GoogleFonts.aladin(
+                        textStyle: TextStyle(
+                            fontSize: 80.0,
+                            fontWeight: FontWeight.bold)
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(16.0,170.0,0.0,0.0),
+                  child: Text('There',
+                    style: GoogleFonts.aladin(
+                        textStyle: TextStyle(
+                            fontSize: 80.0,
+                            fontWeight: FontWeight.bold)
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(170.0,170.0,0.0,0.0),
+                  child: Text('.',
+                    style: GoogleFonts.aladin(
+                        textStyle: TextStyle(
+                          fontSize: 80.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.greenAccent,
+                        )
+                    ),
+                  ),
+                )
+              ]
           ),
-          textScaleFactor: 2.0,
         ),
         new Form(
           key: formKey,
@@ -155,9 +186,15 @@ class _beg_LoginState extends State<beg_Login> implements LoginPageContract {
                 padding: const EdgeInsets.all(20.0),
                 child: new TextFormField(
                   onSaved: (val) => _email = val,
-                  decoration: new InputDecoration(labelText: "Name"),
+                  decoration: new InputDecoration(labelText: "Username",
+                    labelStyle: GoogleFonts.aladin(
+                        textStyle: TextStyle(
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.bold)
+                    ),
+                  ),
                   validator: (String _email){
-                    if (_email.isEmpty) return 'Enter your Name';
+                    if (_email.length <4) return 'Invalid Username';
                     else return null;
                   },
                 ),
@@ -166,9 +203,16 @@ class _beg_LoginState extends State<beg_Login> implements LoginPageContract {
                 padding: const EdgeInsets.all(20.0),
                 child: new TextFormField(
                   onSaved: (val) => _password = val,
-                  decoration: new InputDecoration(labelText: "Password"),
+                  decoration: new InputDecoration(labelText: "Password",
+                    labelStyle: GoogleFonts.aladin(
+                        textStyle: TextStyle(
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.bold)
+                    ),
+                  ),
+                  obscureText: true,
                   validator: (String _password) {
-                    if (_password.length !=8 && _password.isEmpty) return 'Password length should be 8';
+                    if (_password.length < 8) return 'Invalid Password';
                     else return null;
                   },
                 ),
@@ -179,23 +223,20 @@ class _beg_LoginState extends State<beg_Login> implements LoginPageContract {
         new Padding(
             padding: const EdgeInsets.all(10.0),
             child: loginBtn),
-        registerBtn,
         new Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: docBtn),
-
+          padding: const EdgeInsets.all(10.0),
+          child: registerBtn,),
       ],
     );
 
     return new Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: new AppBar(
-        title: new Text(" \t Login Page"),
-      ),
       key: scaffoldKey,
-      body: new Container(
-        child: new Center(
-          child: loginForm,
+      body: SingleChildScrollView(
+        child: new Container(
+          child: new Center(
+            child: loginForm,
+          ),
         ),
       ),
     );
@@ -204,28 +245,42 @@ class _beg_LoginState extends State<beg_Login> implements LoginPageContract {
   @override
   void onLoginError(String error) {
     // TODO: implement onLoginError
-    _showSnackBar("Login not successful");
+    _showSnackBar(error);
     setState(() {
       _isLoading = false;
     });
   }
-
-  @override
-  void onLoginSuccess(User user) async {
-    // TODO: implement onLoginSuccess
-    if(user.username == ""){
+  /**
+      @override
+      void onLoginSuccess(User user) async {
+      // TODO: implement onLoginSuccess
+      if(user.username == ""){
       _showSnackBar("Login not successful");
-    }else{
+      }else{
       _showSnackBar(user.toString());
-    }
-    setState(() {
+      }
+      setState(() {
       _isLoading = false;
-    });
-    if(user.flaglogged == "logged"){
+      });
+      if(user.flaglogged == "logged"){
       print("Logged");
       Navigator.push(context, MaterialPageRoute(builder: (context)=>begHomeScreen()),);
-    }else{
+      }else{
       print("Not Logged");
+      }
+
+      }**/
+  @override
+  void onLoginSuccess(User user) async {
+    if(user != null){
+      Navigator.of(context).pushNamed("/home");
+    }else{
+      // TODO: implement onLoginSuccess
+      _showSnackBar("Login not Success..");
+      setState(() {
+        _isLoading = false;
+      });
     }
+
   }
 }

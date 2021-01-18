@@ -14,7 +14,7 @@ class _proHomeScreenState extends State<proHomeScreen> {
   int selectedIndex = 0;
   final List<Widget>_children = [
     prohome(),
-    viewcreate(),
+    viewcreate('','',0,0,'','','','','','','','','','','','','','','',),
     procal(),
     proprofile(),
   ];
@@ -22,7 +22,7 @@ class _proHomeScreenState extends State<proHomeScreen> {
   {
     setState(() {
       selectedIndex = index;
-          });
+    });
   }
 
   @override
@@ -53,11 +53,11 @@ class _proHomeScreenState extends State<proHomeScreen> {
         ],
         iconSize: 30,
         //currentIndex: selectedIndex,
-       // onTap: (index) {
+        // onTap: (index) {
         //  setState(() {
-       //     selectedIndex = index;
-      //    });
-      //  },
+        //     selectedIndex = index;
+        //    });
+        //  },
         type: BottomNavigationBarType.fixed,
       ),
 

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:recipeapp/screens/pro/created_dish.dart';
 import 'package:recipeapp/screens/pro/pro_create.dart';
 import 'package:recipeapp/screens/pro/pro_dish.dart';
 class viewcreate extends StatefulWidget {
+  final String name,time,method,image,rec1,rec2,rec3,rec4,rec5,rec6,rec7,rec8,rec9,rec10,rec11,rec12,rec13;
+  final int cal,ing;
+  const viewcreate(this.name,this.time,this.cal,this.ing,this.method,this.image,this.rec1,this.rec2,this.rec3,this.rec4,this.rec5,this.rec6,this.rec7,this.rec8,this.rec9,this.rec10,this.rec11,this.rec12,this.rec13);
   @override
   _viewcreateState createState() => _viewcreateState();
 }
@@ -48,10 +52,11 @@ class _viewcreateState extends State<viewcreate> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
+                    _specialistsCardInfo5(),
                     _specialistsCardInfo2(),
-                    _specialistsCardInfo3(),
-                    _specialistsCardInfo4(),
-                    _specialistsCardInfo5()
+                    // _specialistsCardInfo3(),
+                    //_specialistsCardInfo4(),
+
                   ],
                 ),
 
@@ -99,7 +104,7 @@ class _viewcreateState extends State<viewcreate> {
       ),
     );
   }
-  
+
   Widget _specialistsCardInfo2() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 18.0),
@@ -126,7 +131,7 @@ class _viewcreateState extends State<viewcreate> {
             children: <Widget>[
               CircleAvatar(
                 backgroundColor: Color(0xFFD9D9D9),
-                backgroundImage: NetworkImage(image2),
+                backgroundImage: NetworkImage(widget.image),
                 radius: 36.0,
               ),
               SizedBox(
@@ -147,7 +152,7 @@ class _viewcreateState extends State<viewcreate> {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Mistique',
+                          text: widget.name,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -163,7 +168,7 @@ class _viewcreateState extends State<viewcreate> {
                           ),
                         ),
                         TextSpan(
-                          text: '3hrs',
+                          text: widget.time,
                           style: TextStyle(
                             color: Colors.black38,
                             fontWeight: FontWeight.w800,
@@ -178,7 +183,7 @@ class _viewcreateState extends State<viewcreate> {
                   ),
                   RaisedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>prodish(image2)),);
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>crtdish(widget.name,widget.time,widget.cal,widget.ing,widget.method,widget.image,widget.rec1,widget.rec2,widget.rec3,widget.rec4,widget.rec5,widget.rec6,widget.rec7,widget.rec8,widget.rec9,widget.rec10,widget.rec11,widget.rec12,widget.rec13)),);
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(80.0)),
@@ -216,241 +221,10 @@ class _viewcreateState extends State<viewcreate> {
       ),
     );
   }
-  Widget _specialistsCardInfo3() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 18.0),
-      margin: EdgeInsets.only(
-        bottom: 20.0,
-      ),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1.0,
-              blurRadius: 6.0,
-            ),
-          ]),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              CircleAvatar(
-                backgroundColor: Color(0xFFD9D9D9),
-                backgroundImage: NetworkImage(image3),
-                radius: 36.0,
-              ),
-              SizedBox(
-                width: 10.0,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  RichText(
-                    text: TextSpan(
-                      text: '\n',
-                      style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                        height: 1.3,
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'Tuna Nicoise',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        TextSpan(
-                          text: '\n',
-                          style: TextStyle(
-                            color: Colors.black45,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 15,
-                          ),
-                        ),
-                        TextSpan(
-                          text: '3hrs',
-                          style: TextStyle(
-                            color: Colors.black38,
-                            fontWeight: FontWeight.w800,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 6.0,
-                  ),
-                  RaisedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>prodish(image3)),);
-                    },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80.0)),
-                    padding: const EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: const BoxDecoration(
-                        gradient: purpleGradient,
-                        borderRadius: BorderRadius.all(Radius.circular(80.0)),
-                      ),
-                      child: Container(
-                        constraints: const BoxConstraints(
-                            minWidth: 100.0,
-                            minHeight: 36.0), // min sizes for Material buttons
-                        alignment: Alignment.center,
-                        child: const Text(
-                          'Visit',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 16,
-                              color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          //Icon(
-          // LineAwesomeIcons.heart,
-          //  color: lightColor,
-          //  size: 36,
-          //),
-        ],
-      ),
-    );
-  }
-  Widget _specialistsCardInfo4() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 18.0),
-      margin: EdgeInsets.only(
-        bottom: 20.0,
-      ),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1.0,
-              blurRadius: 6.0,
-            ),
-          ]),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              CircleAvatar(
-                backgroundColor: Color(0xFFD9D9D9),
-                backgroundImage: NetworkImage(image4),
-                radius: 36.0,
-              ),
-              SizedBox(
-                width: 10.0,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  RichText(
-                    text: TextSpan(
-                      text: '\n',
-                      style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                        height: 1.3,
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'Mauritian Octopus Salad',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        TextSpan(
-                          text: '\n',
-                          style: TextStyle(
-                            color: Colors.black45,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 15,
-                          ),
-                        ),
-                        TextSpan(
-                          text: '4hrs',
-                          style: TextStyle(
-                            color: Colors.black38,
-                            fontWeight: FontWeight.w800,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 6.0,
-                  ),
-                  RaisedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>prodish(image4)),);
-                    },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80.0)),
-                    padding: const EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: const BoxDecoration(
-                        gradient: purpleGradient,
-                        borderRadius: BorderRadius.all(Radius.circular(80.0)),
-                      ),
-                      child: Container(
-                        constraints: const BoxConstraints(
-                            minWidth: 100.0,
-                            minHeight: 36.0), // min sizes for Material buttons
-                        alignment: Alignment.center,
-                        child: const Text(
-                          'Visit',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 16,
-                              color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          //Icon(
-          // LineAwesomeIcons.heart,
-          //  color: lightColor,
-          //  size: 36,
-          //),
-        ],
-      ),
-    );
-  }
+
   Widget _specialistsCardInfo5() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 20.0),
+      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
       alignment: Alignment.center,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

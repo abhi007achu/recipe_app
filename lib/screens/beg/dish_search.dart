@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-class prodish extends StatelessWidget {
-  final image,name,cal,ing,time,rec1,rec2,rec3,rec4,rec5,rec6,rec7,dec;
-  Color iconcolor = Colors.black;
+class dispdish extends StatefulWidget {
+  final image,name,cal,ing,time,rec1,rec2,rec3,rec4,rec5,rec6,rec7,rec8,rec9,rec10,rec11,rec12,rec13,dec;
   ///For hero tagging and showing relative image
-  prodish(this.image,this.name,this.cal,this.ing,this.time,this.rec1,this.rec2,this.rec3,this.rec4,this.rec5,this.rec6,this.rec7,this.dec);
+  dispdish(this.name,this.time,this.cal,this.ing,this.dec,this.image,this.rec1,this.rec2,this.rec3,this.rec4,this.rec5,this.rec6,this.rec7,this.rec8,this.rec9,this.rec10,this.rec11,this.rec12,this.rec13);
+  @override
+  _dispdishState createState() => _dispdishState();
+}
 
+class _dispdishState extends State<dispdish> {
+  Color iconcolor= Colors.grey;
   @override
   Widget build(BuildContext context) {
     final size= MediaQuery.of(context).size;
@@ -19,7 +23,7 @@ class prodish extends StatelessWidget {
             Hero(
               child: Container(
                 height: size.height*0.45,
-                child: Image.asset(image, fit: BoxFit.cover,),
+                child: Image.network(widget.image, fit: BoxFit.cover,),
               ),
               tag:'dish1.jpg',
             ),
@@ -46,7 +50,7 @@ class prodish extends StatelessWidget {
                           Row(
                             children: <Widget>[
                               Text(
-                                "$name",
+                                widget.name,
                                 style: GoogleFonts.poppins(
                                     fontSize: 22,
                                     fontWeight: FontWeight.bold
@@ -55,9 +59,20 @@ class prodish extends StatelessWidget {
                               Spacer(),
                               IconButton(
                                 icon: Icon(Icons.favorite),
-                                color: Colors.redAccent,
+                                color: iconcolor,
                                 iconSize: 30,
                                 onPressed: () {
+                                  setState(() {
+                                    if(iconcolor==Colors.grey)
+                                    {
+                                      iconcolor= Colors.redAccent;
+                                    }
+                                    else
+                                    {
+                                      iconcolor=Colors.grey;
+                                    }
+
+                                  });
                                 },
                               )
                             ],
@@ -88,7 +103,7 @@ class prodish extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          "$cal",
+                                          widget.cal,
                                           style:GoogleFonts.poppins(
                                               fontSize: 17,
                                               color:Colors.black45,
@@ -119,7 +134,7 @@ class prodish extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          "$ing",
+                                          widget.ing,
                                           style:GoogleFonts.poppins(
                                               fontSize: 17,
                                               color:Colors.black45,
@@ -150,7 +165,7 @@ class prodish extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          "$time",
+                                          widget.time,
                                           style:GoogleFonts.poppins(
                                               fontSize:17 ,
                                               color:Colors.black45,
@@ -178,7 +193,7 @@ class prodish extends StatelessWidget {
                             height: 10,
                           ),
                           Text(
-                            '$rec1',
+                            widget.rec1,
                             style:GoogleFonts.poppins(
                               fontSize: 17,
                               fontWeight: FontWeight.w400,
@@ -189,7 +204,7 @@ class prodish extends StatelessWidget {
                             height: 8,
                           ),
                           Text(
-                            '$rec2',
+                            widget.rec2,
                             style:GoogleFonts.poppins(
                               fontSize: 17,
                               fontWeight: FontWeight.w400,
@@ -200,7 +215,7 @@ class prodish extends StatelessWidget {
                             height: 8,
                           ),
                           Text(
-                            '$rec3',
+                            widget.rec3,
                             style:GoogleFonts.poppins(
                               fontSize: 17,
                               fontWeight: FontWeight.w400,
@@ -211,7 +226,7 @@ class prodish extends StatelessWidget {
                             height: 8,
                           ),
                           Text(
-                            '$rec4',
+                            widget.rec4,
                             style:GoogleFonts.poppins(
                               fontSize: 17,
                               fontWeight: FontWeight.w400,
@@ -222,7 +237,7 @@ class prodish extends StatelessWidget {
                             height: 8,
                           ),
                           Text(
-                            '$rec5',
+                            widget.rec5,
                             style:GoogleFonts.poppins(
                               fontSize: 17,
                               fontWeight: FontWeight.w400,
@@ -233,7 +248,7 @@ class prodish extends StatelessWidget {
                             height: 8,
                           ),
                           Text(
-                            '$rec6',
+                            widget.rec6,
                             style:GoogleFonts.poppins(
                               fontSize: 17,
                               fontWeight: FontWeight.w400,
@@ -244,13 +259,81 @@ class prodish extends StatelessWidget {
                             height: 8,
                           ),
                           Text(
-                            '$rec7',
+                            widget.rec7,
                             style:GoogleFonts.poppins(
                               fontSize: 17,
                               fontWeight: FontWeight.w400,
                               color: Colors.black45,
                             ),
                           ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec8,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec9,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec10,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec11,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec12,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.rec13,
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+
+
                           SizedBox(
                             height: 24,
                           ),
@@ -265,7 +348,7 @@ class prodish extends StatelessWidget {
                             height: 10,
                           ),
                           Text(
-                            '$dec',
+                            widget.dec,
                             style: GoogleFonts.poppins(
                               fontSize: 17,
                               fontWeight: FontWeight.w400,

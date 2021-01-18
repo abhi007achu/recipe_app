@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-class prodish extends StatelessWidget {
-  final image,name,cal,ing,time,rec1,rec2,rec3,rec4,rec5,rec6,rec7,dec;
+class crtdish extends StatelessWidget {
+  final image,name,cal,ing,time,rec1,rec2,rec3,rec4,rec5,rec6,rec7,rec8,rec9,rec10,rec11,rec12,rec13,dec;
   Color iconcolor = Colors.black;
   ///For hero tagging and showing relative image
-  prodish(this.image,this.name,this.cal,this.ing,this.time,this.rec1,this.rec2,this.rec3,this.rec4,this.rec5,this.rec6,this.rec7,this.dec);
+  crtdish(this.name,this.time,this.cal,this.ing,this.dec,this.image,this.rec1,this.rec2,this.rec3,this.rec4,this.rec5,this.rec6,this.rec7,this.rec8,this.rec9,this.rec10,this.rec11,this.rec12,this.rec13);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class prodish extends StatelessWidget {
             Hero(
               child: Container(
                 height: size.height*0.45,
-                child: Image.asset(image, fit: BoxFit.cover,),
+                child: Image.network(image, fit: BoxFit.cover,),
               ),
               tag:'dish1.jpg',
             ),
@@ -251,6 +251,74 @@ class prodish extends StatelessWidget {
                               color: Colors.black45,
                             ),
                           ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            '$rec8',
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            '$rec9',
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            '$rec10',
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            '$rec11',
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            '$rec12',
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            '$rec13',
+                            style:GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black45,
+                            ),
+                          ),
+
+
                           SizedBox(
                             height: 24,
                           ),

@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../mainscreen.dart';
 
 
 class begprofile extends StatefulWidget {
+  // final String uname;
+  // const begprofile(this.uname);
   @override
   _begprofileState createState() => _begprofileState();
 }
-final fname='Jane';
-final lname='Samuel';
-final uname='Jane@Sam';
-final email ='jane123sam@gmail.com';
-final contact='9865123478';
 const mainBgColor = Color(0xFFf2f2f2);
 const darkColor = Color(0xFF2A0B35);
 const midColor = Color(0xFF522349);
@@ -24,7 +24,7 @@ const purpleGradient = LinearGradient(
   begin: Alignment.centerLeft,
   end: Alignment.centerRight,
 );
-const USER_IMAGE='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSLHBqsziWUqtTXPe3pU-qqrGJhUHrxFH7klw&usqp=CAU';
+const USER_IMAGE='https://www.shareicon.net/data/512x512/2016/05/24/770116_people_512x512.png';
 const redGradient = LinearGradient(
   colors: <Color>[darkRedColor, lightRedColor],
   stops: [0.0, 1.0],
@@ -57,10 +57,8 @@ class _begprofileState extends State<begprofile> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    _specialistsCardInfo1(),
-                    _specialistsCardInfo2(),
-                    _specialistsCardInfo3(),
-                    _specialistsCardInfo4()
+
+                    _specialistsCardInfo5()
 
                   ],
                 ),
@@ -73,7 +71,7 @@ class _begprofileState extends State<begprofile> {
   }
   Container _backBgCover() {
     return Container(
-      height: 200.0,
+      height: 500.0,
       decoration: BoxDecoration(
         gradient: purpleGradient,
         borderRadius: BorderRadius.only(
@@ -85,8 +83,8 @@ class _begprofileState extends State<begprofile> {
   }
   Positioned _greetings() {
     return Positioned(
-      left: 20,
-      bottom: 30,
+      left: 110,
+      bottom: 60,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -97,7 +95,19 @@ class _begprofileState extends State<begprofile> {
           CircleAvatar(
             backgroundImage: NetworkImage(USER_IMAGE),
             backgroundColor: Color(0xFFD9D9D9),
-            radius: 50.0,
+            radius: 80.0,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Anitta',
+            style: GoogleFonts.itim(
+                textStyle: TextStyle(
+                    fontSize: 30.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)
+            ),
           ),
         ],
       ),
@@ -105,23 +115,10 @@ class _begprofileState extends State<begprofile> {
   }
 
 
-
-  Widget _specialistsCardInfo1() {
+  Widget _specialistsCardInfo5() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 18.0),
-      margin: EdgeInsets.only(
-        bottom: 20.0,
-      ),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1.0,
-              blurRadius: 6.0,
-            ),
-          ]),
+      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+      alignment: Alignment.center,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,37 +127,38 @@ class _begprofileState extends State<begprofile> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-
-              SizedBox(
-                width: 10.0,
-              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  RichText(
-                    text: TextSpan(
-                      text: 'Name\n',
-                      style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w400,
-                        height: 1.3,
+                  RaisedButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MainScreen()),);
+                    },
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80.0)),
+                    padding: const EdgeInsets.all(5.0),
+                    child: Ink(
+                      decoration: const BoxDecoration(
+                        gradient: purpleGradient,
+                        borderRadius: BorderRadius.all(Radius.circular(80.0)),
                       ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: '$fname    $lname',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                      child: Container(
+                        constraints: const BoxConstraints(
+                            minWidth: 300.0,
+                            minHeight: 60.0), // min sizes for Material buttons
+                        alignment: Alignment.center,
+                        child:  Text(
+                          'Logout',
+                          style: GoogleFonts.itim(
+                              textStyle: TextStyle(
+                                  fontSize: 25.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 6.0,
                   ),
                 ],
               ),
@@ -175,212 +173,4 @@ class _begprofileState extends State<begprofile> {
       ),
     );
   }
-  Widget _specialistsCardInfo2() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 18.0),
-      margin: EdgeInsets.only(
-        bottom: 20.0,
-      ),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1.0,
-              blurRadius: 6.0,
-            ),
-          ]),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-
-              SizedBox(
-                width: 10.0,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  RichText(
-                    text: TextSpan(
-                      text: 'Username\n',
-                      style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w400,
-                        height: 1.3,
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: '$uname',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 6.0,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          //Icon(
-          // LineAwesomeIcons.heart,
-          //  color: lightColor,
-          //  size: 36,
-          //),
-        ],
-      ),
-    );
-  }
-  Widget _specialistsCardInfo3() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 18.0),
-      margin: EdgeInsets.only(
-        bottom: 20.0,
-      ),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1.0,
-              blurRadius: 6.0,
-            ),
-          ]),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-
-              SizedBox(
-                width: 10.0,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  RichText(
-                    text: TextSpan(
-                      text: 'Email\n',
-                      style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w400,
-                        height: 1.3,
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: '$email',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 6.0,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          //Icon(
-          // LineAwesomeIcons.heart,
-          //  color: lightColor,
-          //  size: 36,
-          //),
-        ],
-      ),
-    );
-  }
-  Widget _specialistsCardInfo4() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 18.0),
-      margin: EdgeInsets.only(
-        bottom: 20.0,
-      ),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1.0,
-              blurRadius: 6.0,
-            ),
-          ]),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-
-              SizedBox(
-                width: 10.0,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  RichText(
-                    text: TextSpan(
-                      text: 'Contact Number\n',
-                      style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w400,
-                        height: 1.3,
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: '$contact',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 6.0,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          //Icon(
-          // LineAwesomeIcons.heart,
-          //  color: lightColor,
-          //  size: 36,
-          //),
-        ],
-      ),
-    );
-  }
-
 }

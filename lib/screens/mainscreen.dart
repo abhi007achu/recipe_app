@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'beg/beg_login.dart';
 import 'pro/loginpage.dart';
 class MainScreen extends StatefulWidget {
@@ -16,8 +17,8 @@ class _MainScreenState extends State<MainScreen> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Color.fromRGBO(131, 15, 15, 1),
-                  Color.fromRGBO(240, 28, 28, 1)
+                  Color.fromRGBO(255,255,255,1),
+                  Color.fromRGBO(223,217,217,1)
                 ]
             )
         ),
@@ -33,28 +34,31 @@ class _MainScreenState extends State<MainScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text('TASTE',
-                      style: TextStyle(fontFamily: 'Montserrat',
-                        fontSize: 38.0,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromRGBO(252,104, 107, 1),
+                      style: GoogleFonts.lobster(
+                          textStyle: TextStyle(
+                              fontSize: 35.0,
+                              fontWeight: FontWeight.bold
+                          )
                       ),
                     ),
                     Text('DIARY',
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 38.0,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromRGBO(250,50, 50, 1),
+                      style: GoogleFonts.lobster(
+                          textStyle: TextStyle(
+                              fontSize: 35.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.redAccent[700]
+                          )
                       ),
                     ),
                   ],
                 ),
                 Text('Find what you love to cook',
-                  style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                  style: GoogleFonts.yesteryear(
+                      textStyle: TextStyle(
+                          fontSize: 30.0,
+                          // fontWeight: FontWeight.bold,
+                          color: Colors.grey[800]
+                      )
                   ),
                 ),
                 SizedBox(

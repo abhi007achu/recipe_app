@@ -6,6 +6,8 @@ import 'package:recipeapp/screens/beg/beg_login.dart';
 import 'package:recipeapp/data/database_helper.dart';
 import 'package:recipeapp/models/user.dart';
 
+import 'beg_login2.dart';
+
 class beg_reg extends StatefulWidget {
   @override
   _beg_regState createState() => new _beg_regState();
@@ -28,15 +30,16 @@ class _beg_regState  extends State<beg_reg> {
       padding: const EdgeInsets.all(8.0),
       child: ButtonTheme(
         padding: EdgeInsets.only(),
-        buttonColor: Colors.white70,
+        buttonColor: Colors.greenAccent,
         height: 50,
         minWidth: 350,
         child: RaisedButton(
           child: Text(
             'Register',
-            style: TextStyle(
-              color: Colors.teal[800],
-              fontSize: 20,
+            style: GoogleFonts.aladin(
+                textStyle: TextStyle(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold)
             ),
           ),
           shape: RoundedRectangleBorder(
@@ -53,18 +56,45 @@ class _beg_regState  extends State<beg_reg> {
 
 
     var loginForm = new Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        new Text(
-          "Register",
-          style: GoogleFonts.lato(
-              textStyle:TextStyle(
-                color: Colors.teal[800],
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              )
+        Container(
+          child: Stack(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.fromLTRB(15.0,80.0,0.0,0.0),
+                  child: Text('Sign',
+                    style: GoogleFonts.aladin(
+                        textStyle: TextStyle(
+                            fontSize: 80.0,
+                            fontWeight: FontWeight.bold)
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(140.0,80.0,0.0,0.0),
+                  child: Text('Up',
+                    style: GoogleFonts.aladin(
+                        textStyle: TextStyle(
+                            fontSize: 80.0,
+                            fontWeight: FontWeight.bold)
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(220.0,80.0,0.0,0.0),
+                  child: Text('!',
+                    style: GoogleFonts.aladin(
+                        textStyle: TextStyle(
+                          fontSize: 80.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.greenAccent,
+                        )
+                    ),
+                  ),
+                )
+              ]
           ),
-          textScaleFactor: 2.0,
         ),
         new Form(
           key: formKey,
@@ -75,7 +105,12 @@ class _beg_regState  extends State<beg_reg> {
                 child: new TextFormField(
                   keyboardType: TextInputType.text,
                   onSaved: (val) => _name = val,
-                  decoration: new InputDecoration(labelText: "Name"),
+                  decoration: new InputDecoration(labelText: "Name",
+                    labelStyle: GoogleFonts.aladin(
+                        textStyle: TextStyle(
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold)
+                    ),),
                   validator: (String name) {
                     if (name.isEmpty)
                       return 'Enter your name';
@@ -89,7 +124,12 @@ class _beg_regState  extends State<beg_reg> {
                 child: new TextFormField(
 
                   onSaved: (val) => _username = val,
-                  decoration: new InputDecoration(labelText: "User Name"),
+                  decoration: new InputDecoration(labelText: "User Name",
+                    labelStyle: GoogleFonts.aladin(
+                        textStyle: TextStyle(
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold)
+                    ),),
                   validator: (String name) {
                     if (name.isEmpty)
                       return 'Enter your name';
@@ -102,9 +142,14 @@ class _beg_regState  extends State<beg_reg> {
                 padding: const EdgeInsets.all(10.0),
                 child: new TextFormField(
                   onSaved: (val) => _password = val,
-                  decoration: new InputDecoration(labelText: "Password"),
+                  decoration: new InputDecoration(labelText: "Password",
+                    labelStyle: GoogleFonts.aladin(
+                        textStyle: TextStyle(
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold)
+                    ),),
                   validator: (String _password) {
-                    if (_password.length != 8 && _password.isEmpty)
+                    if (_password.length != 8 )
                       return 'Password length should be 8';
                     else
                       return null;
@@ -117,9 +162,14 @@ class _beg_regState  extends State<beg_reg> {
                 child: new TextFormField(
                   keyboardType: TextInputType.number,
                   onSaved: (val) => phno = int.parse(val),
-                  decoration: new InputDecoration(labelText: "phone Number"),
+                  decoration: new InputDecoration(labelText: "phone Number",
+                    labelStyle: GoogleFonts.aladin(
+                        textStyle: TextStyle(
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold)
+                    ),),
                   validator: (String phno) {
-                    if (phno.length != 10 && phno.isEmpty)
+                    if (phno.length != 10 )
                       return 'Invalid mobile number';
                     else
                       return null;
@@ -131,9 +181,14 @@ class _beg_regState  extends State<beg_reg> {
                 child: new TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   onSaved: (val) => email = val,
-                  decoration: new InputDecoration(labelText:"Email"),
+                  decoration: new InputDecoration(labelText:"Email",
+                    labelStyle: GoogleFonts.aladin(
+                        textStyle: TextStyle(
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold)
+                    ),),
                   validator: (String email) {
-                    if (email.isEmpty)
+                    if (email.length <12)
                       return 'Invalid Email';
                     else
                       return null;
@@ -143,15 +198,13 @@ class _beg_regState  extends State<beg_reg> {
             ],
           ),
         ),
-        loginBtn
+        loginBtn,
+        new Padding(padding: EdgeInsets.all(100.0))
       ],
     );
 
     return new Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: new AppBar(
-          title: new Text("Register"),
-        ),
         key: scaffoldKey,
         body: SingleChildScrollView(
           child: new Container(
@@ -176,11 +229,11 @@ class _beg_regState  extends State<beg_reg> {
       setState(() {
         _isLoading = true;
         form.save();
-        var user = new User(_name, _username, _password,phno,email, null);
+        var user = new User(_name, _username, _password,phno,email);
         var db = new DatabaseHelper();
         db.saveUser(user);
         _isLoading = false;
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>begHomeScreen()),);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>beg_Login2(_username,_password,)),);
         if (formKey.currentState.validate()) {}
       });
     }

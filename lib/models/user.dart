@@ -4,11 +4,14 @@ class User {
   String _password;
   int _phno;
   String _email;
-  String _flaglogged;
 
 
 
-  User(this._name, this._username, this._password,this._phno,this._email, this._flaglogged);
+  User(this._name, this._username, this._password,this._phno,this._email);
+  User.fromMap(dynamic obj) {
+    this._username = obj['username'];
+    this._password = obj['password'];
+  }
 
   User.map(dynamic obj) {
     this._name = obj['name'];
@@ -16,7 +19,7 @@ class User {
     this._password = obj['password'];
     this._phno = obj['phno'];
     this._email = obj['email'];
-    this._flaglogged = obj['password'];
+
   }
 
   String get name => _name;
@@ -24,7 +27,6 @@ class User {
   String get password => _password;
   int get phno => _phno;
   String get email => _email;
-  String get flaglogged => _flaglogged;
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
@@ -33,7 +35,6 @@ class User {
     map["password"] = _password;
     map["phno"] = _phno;
     map["email"] = _email;
-    map["flaglogged"] = _flaglogged;
     return map;
   }
 }

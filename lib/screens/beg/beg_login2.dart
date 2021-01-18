@@ -2,17 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:recipeapp/data/database_helper.dart';
 import 'package:recipeapp/models/user.dart';
+import 'package:recipeapp/screens/beg/beg_homscreen.dart';
+import 'package:recipeapp/screens/beg/beg_login.dart';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:recipeapp/screens/pro/pro_home.dart';
-import 'package:recipeapp/screens/pro/register.dart';
+import 'beg_home.dart';
+import 'beg_register.dart';
 
-class Login extends StatefulWidget {
+class beg_Login2 extends StatefulWidget {
+  final String username,password;
+  const beg_Login2(this.username,this.password);
   @override
-  _LoginState createState() => new _LoginState();
+  _beg_Login2State createState() => new _beg_Login2State();
 }
 
-class _LoginState extends State<Login>  {
+class _beg_Login2State extends State<beg_Login2> {
   BuildContext _ctx;
   bool _isLoading = false;
   final formKey = new GlobalKey<FormState>();
@@ -23,7 +27,7 @@ class _LoginState extends State<Login>  {
 
 
   void _register() {
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>Register()),);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>beg_reg()),);
   }
 
 
@@ -32,11 +36,11 @@ class _LoginState extends State<Login>  {
 
     if (form.validate()) {
       setState(() {
-        //_isLoading = true;
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>proHomeScreen()),);
+        _isLoading = true;
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>begHomeScreen()),);
         form.save();
-        //  _presenter.doLogin(_email, _password);
-        //  _presenter.doLogin(_email, _password);
+
+
       });
     }
   }
@@ -185,7 +189,7 @@ class _LoginState extends State<Login>  {
                     ),
                   ),
                   validator: (String _email){
-                    if (_email.length <4) return 'Invalid Username';
+                    if (_email != widget.username) return 'Invalid Username';
                     else return null;
                   },
                 ),
@@ -202,7 +206,7 @@ class _LoginState extends State<Login>  {
                     ),
                   ),
                   validator: (String _password) {
-                    if (_password.length < 8) return 'Invalid Password';
+                    if (_password != widget.password) return 'Invalid Password';
                     else return null;
                   },
                 ),
@@ -235,28 +239,42 @@ class _LoginState extends State<Login>  {
   @override
   void onLoginError(String error) {
     // TODO: implement onLoginError
-    _showSnackBar("Login not successful");
+    _showSnackBar(error);
     setState(() {
       _isLoading = false;
     });
   }
+  /**
+      @override
+      void onLoginSuccess(User user) async {
+      // TODO: implement onLoginSuccess
+      if(user.username == ""){
+      _showSnackBar("Login not successful");
+      }else{
+      _showSnackBar(user.toString());
+      }
+      setState(() {
+      _isLoading = false;
+      });
+      if(user.flaglogged == "logged"){
+      print("Logged");
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>begHomeScreen()),);
+      }else{
+      print("Not Logged");
+      }
 
-/** @override
-    void onLoginSuccess(User user) async {
-    // TODO: implement onLoginSuccess
-    if(user.username == ""){
-    _showSnackBar("Login not successful");
+      }**/
+  @override
+  void onLoginSuccess(User user) async {
+    if(user != null){
+      Navigator.of(context).pushNamed("/home");
     }else{
-    _showSnackBar(user.toString());
+      // TODO: implement onLoginSuccess
+      _showSnackBar("Login not Success..");
+      setState(() {
+        _isLoading = false;
+      });
     }
-    setState(() {
-    _isLoading = false;
-    });
-    if(user.flaglogged == "logged"){
-    print("Logged");
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>proHomeScreen()),);
-    }else{
-    print("Not Logged");
-    }
-    }**/
+
+  }
 }
