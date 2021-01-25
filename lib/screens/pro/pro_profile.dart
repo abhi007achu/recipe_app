@@ -101,7 +101,7 @@ class _proprofileState extends State<proprofile> {
             height: 20,
           ),
           Text(
-            'Anitta',
+            'UserName',
             style: GoogleFonts.itim(
                 textStyle: TextStyle(
                     fontSize: 30.0,

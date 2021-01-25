@@ -30,21 +30,22 @@ class _MyAppState extends State<MyApp> {
     return SplashScreen(
       seconds: 10,
       routeName: "/",
-     backgroundColor: Colors.lime[100],
-      title: Text('\nTasteDiary\n',
+      backgroundColor: Colors.black,
+      title: Text('\nTasteDiary',
         style: GoogleFonts.lobster(
             textStyle: TextStyle(
-                fontSize: 38.0,
-                fontWeight: FontWeight.bold
+              fontSize: 45.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             )
         ),
       ),
       image: Image.asset('assets/pics/PngItem_778456.png',
-      fit: BoxFit.cover,),
+        fit: BoxFit.cover,),
 
 
       loaderColor: Colors.redAccent[700],
-      photoSize: 110.0,
+      photoSize: 100.0,
       navigateAfterSeconds: MainScreen(),
     );
   }

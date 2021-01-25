@@ -32,8 +32,8 @@ class _beghomeState extends State<beghome> {
     "295",
     "226",
     "246",
-    "266",
-    "131",
+    "699",
+    "500",
     "138",
   ];
   final ing = [

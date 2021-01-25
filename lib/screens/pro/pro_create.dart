@@ -150,7 +150,7 @@ class _procreateState extends State<procreate> {
                 Padding(padding: EdgeInsets.only(top: 10.0)),
                 TextFormField(
                   decoration:  InputDecoration(
-                    labelText: "Number of ingredients(less than six )",
+                    labelText: "Number of ingredients(less than 14 )",
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
                       borderRadius:  BorderRadius.circular(25.0),

@@ -48,9 +48,9 @@ class _profavState extends State<profav> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     _specialistsCardInfo1(),
-                    _specialistsCardInfo2(),
-                    _specialistsCardInfo3(),
-                    _specialistsCardInfo4()
+                   // _specialistsCardInfo2(),
+                    //_specialistsCardInfo3(),
+                    //_specialistsCardInfo4()
 
                   ],
                 ),
