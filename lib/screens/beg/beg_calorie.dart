@@ -246,18 +246,23 @@ class _begcalorieState extends State<begcalorie> {
 
         sum = m1+ m2+ m3;
 
-        if(sum<800)
-        {
-          msg='LOW calorie Consumption!!!!';
-        }
+        if(m1==0 || m2==0 || m3==0)
+          {
+            sum=0;
+            msg='Sorry dish not found :(';
+          }
+        else if(sum<800)
+          {
+             msg='LOW calorie Consumption!!!!';
+          }
         else if (sum>1500)
-        {
-          msg='Daily Calorie limit EXCEEDED!!!!';
-        }
+          {
+             msg='Daily Calorie limit EXCEEDED!!!!';
+          }
         else
-        {
-          msg = 'Stay Healthy :)';
-        }
+          {
+             msg = 'Stay Healthy :)';
+          }
       });
     }
   }

@@ -206,7 +206,7 @@ class _beghomeState extends State<prohome> {
                         icon: Icon(Icons.favorite),
                         color: Colors.grey[800],
                         onPressed: () {
-                          //Navigator.push(context, MaterialPageRoute(builder: (context)=>pro7fav()),);
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>profav()),);
                         },
                       ),
                     ],
