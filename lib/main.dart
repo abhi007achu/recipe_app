@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-      seconds: 10,
+      seconds: 4,
       routeName: "/",
       backgroundColor: Colors.black,
       title: Text('\nTasteDiary',

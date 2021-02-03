@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:recipeapp/data/database_helper.dart';
+import 'package:recipeapp/models/dish.dart';
 class begcalorie extends StatefulWidget {
   @override
   _begcalorieState createState() => _begcalorieState();
@@ -247,22 +249,23 @@ class _begcalorieState extends State<begcalorie> {
         sum = m1+ m2+ m3;
 
         if(m1==0 || m2==0 || m3==0)
-          {
-            sum=0;
-            msg='Sorry dish not found :(';
-          }
+        {
+          sum=0;
+          msg='Sorry dish not found :(';
+        }
+
         else if(sum<800)
-          {
-             msg='LOW calorie Consumption!!!!';
-          }
+        {
+          msg='LOW calorie Consumption!!!!';
+        }
         else if (sum>1500)
-          {
-             msg='Daily Calorie limit EXCEEDED!!!!';
-          }
+        {
+          msg='Daily Calorie limit EXCEEDED!!!!';
+        }
         else
-          {
-             msg = 'Stay Healthy :)';
-          }
+        {
+          msg = 'Stay Healthy :)';
+        }
       });
     }
   }

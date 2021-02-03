@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipeapp/data/database_helper.dart';
@@ -180,27 +181,15 @@ class _RegisterState  extends State<Register> {
                 padding: const EdgeInsets.all(10.0),
                 child: new TextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  onSaved: (val) => email = val,
+
                   decoration: new InputDecoration(labelText:"Email",
                     labelStyle: GoogleFonts.aladin(
                         textStyle: TextStyle(
                             fontSize: 22.0,
                             fontWeight: FontWeight.bold)
                     ),),
-                  /** validator: (String email) {
-                      Pattern pattern= r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$';
-                      RegExp regex=RegExp(pattern);
-                      if (!regex.hasMatch(email))
-                      return 'Invalid Email';
-                      else
-                      return null;
-                      },**/
-                  validator: (String email) {
-                    if (email.isEmpty)
-                      return 'Invalid Email';
-                    else
-                      return null;
-                  },
+                  validator: (val)=>!EmailValidator.validate(val,true)?'invalid email':null,
+                  onSaved: (val) => email = (val),
                 ),
               ),
             ],

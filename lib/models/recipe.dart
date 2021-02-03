@@ -66,4 +66,21 @@ class Recipe {
     map["rec13"] = _rec13;
     return map;
   }
+  Recipe.fromMapObject(Map<String, dynamic> map) {
+    this._dname = map['dname'];
+    this._rec1 = map['rec1'];
+    this._rec2 = map['rec2'];
+    this._rec3 = map['rec3'];
+    this._rec4 = map['rec4'];
+    this._rec5 = map['rec5'];
+    this._rec6 = map['rec6'];
+    this._rec7 = map['rec7'];
+    this._rec8 = map['rec8'];
+    this._rec9 = map['rec9'];
+    this._rec10 = map['rec10'];
+    this._rec11 = map['rec11'];
+    this._rec12 = map['rec12'];
+    this._rec13 = map['rec13'];
+
+  }
 }

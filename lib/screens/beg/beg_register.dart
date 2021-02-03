@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipeapp/models/user1.dart';
@@ -181,19 +182,15 @@ class _beg_regState  extends State<beg_reg> {
                 padding: const EdgeInsets.all(10.0),
                 child: new TextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  onSaved: (val) => email = val,
+
                   decoration: new InputDecoration(labelText:"Email",
                     labelStyle: GoogleFonts.aladin(
                         textStyle: TextStyle(
                             fontSize: 22.0,
                             fontWeight: FontWeight.bold)
                     ),),
-                  validator: (String email) {
-                    if (email.length <12)
-                      return 'Invalid Email';
-                    else
-                      return null;
-                  },
+                  validator: (val)=>!EmailValidator.validate(val,true)?'invalid email':null,
+                  onSaved: (val) => email = (val),
                 ),
               ),
             ],

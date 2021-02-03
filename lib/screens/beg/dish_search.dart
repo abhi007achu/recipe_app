@@ -1,371 +1,304 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-class dispdish extends StatefulWidget {
-  final image,name,cal,ing,time,rec1,rec2,rec3,rec4,rec5,rec6,rec7,rec8,rec9,rec10,rec11,rec12,rec13,dec;
-  ///For hero tagging and showing relative image
-  dispdish(this.name,this.time,this.cal,this.ing,this.dec,this.image,this.rec1,this.rec2,this.rec3,this.rec4,this.rec5,this.rec6,this.rec7,this.rec8,this.rec9,this.rec10,this.rec11,this.rec12,this.rec13);
-  @override
-  _dispdishState createState() => _dispdishState();
-}
+import 'package:recipeapp/data/database_helper.dart';
+import 'package:recipeapp/models/dish.dart';
+import 'package:recipeapp/models/recipe.dart';
 
-class _dispdishState extends State<dispdish> {
-  Color iconcolor= Colors.grey;
+class dapos extends StatelessWidget {
+  final item;
+  dapos(this.item);
   @override
   Widget build(BuildContext context) {
-    final size= MediaQuery.of(context).size;
-    return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Stack(
-          children: <Widget>[
-            //first show img in background
-            Hero(
-              child: Container(
-                height: size.height*0.45,
-                child: Image.network(widget.image, fit: BoxFit.cover,),
-              ),
-              tag:'dish1.jpg',
-            ),
-            DraggableScrollableSheet(
-                maxChildSize: 1,
-                initialChildSize: 0.6,
-                minChildSize: 0.6,
-                builder: (context, controller)
-                {
-                  return SingleChildScrollView(
-                    controller: controller,
-                    child: Container(
-                      padding: const EdgeInsets.all(24),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(40),
-                              topRight: Radius.circular(40)
-                          )
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Text(
-                                widget.name,
-                                style: GoogleFonts.poppins(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold
-                                ),
-                              ),
-                              Spacer(),
-                              IconButton(
-                                icon: Icon(Icons.favorite),
-                                color: iconcolor,
-                                iconSize: 30,
-                                onPressed: () {
-                                  setState(() {
-                                    if(iconcolor==Colors.grey)
-                                    {
-                                      iconcolor= Colors.redAccent;
-                                    }
-                                    else
-                                    {
-                                      iconcolor=Colors.grey;
-                                    }
-
-                                  });
-                                },
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 24,
-                          ),
-                          //container for food information
-                          Container(
-                            child: Row(
-                              children: <Widget>[
-                                Expanded(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border:
-                                        Border.all(color: Colors.grey[400])
-                                    ),
-                                    padding:
-                                    const EdgeInsets.symmetric(vertical: 16),
-                                    child: Column(
-                                      children: <Widget>[
-                                        Text(
-                                          "Calories",
-                                          style:GoogleFonts.poppins(
-                                              fontSize: 18,
-                                              color:Colors.black
-                                          ),
-                                        ),
-                                        Text(
-                                          widget.cal,
-                                          style:GoogleFonts.poppins(
-                                              fontSize: 17,
-                                              color:Colors.black45,
-                                              fontWeight: FontWeight.bold
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox( width: 10,),
-                                Expanded(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border:
-                                        Border.all(color: Colors.grey[400])
-                                    ),
-                                    padding:
-                                    const EdgeInsets.symmetric(vertical: 16),
-                                    child: Column(
-                                      children: <Widget>[
-                                        Text(
-                                          "Ingredients",
-                                          style:GoogleFonts.poppins(
-                                              fontSize: 18,
-                                              color:Colors.black
-                                          ),
-                                        ),
-                                        Text(
-                                          widget.ing,
-                                          style:GoogleFonts.poppins(
-                                              fontSize: 17,
-                                              color:Colors.black45,
-                                              fontWeight: FontWeight.bold
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox( width: 10,),
-                                Expanded(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border:
-                                        Border.all(color: Colors.grey[400])
-                                    ),
-                                    padding:
-                                    const EdgeInsets.symmetric(vertical: 16),
-                                    child: Column(
-                                      children: <Widget>[
-                                        Text(
-                                          "Time",
-                                          style:GoogleFonts.poppins(
-                                              fontSize: 18,
-                                              color:Colors.black
-                                          ),
-                                        ),
-                                        Text(
-                                          widget.time,
-                                          style:GoogleFonts.poppins(
-                                              fontSize:17 ,
-                                              color:Colors.black45,
-                                              fontWeight: FontWeight.bold
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 24,
-                          ),
-                          Text(
-                            "RECIPE",
-                            style: GoogleFonts.poppins(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            widget.rec1,
-                            style:GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            widget.rec2,
-                            style:GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            widget.rec3,
-                            style:GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            widget.rec4,
-                            style:GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            widget.rec5,
-                            style:GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            widget.rec6,
-                            style:GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            widget.rec7,
-                            style:GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            widget.rec8,
-                            style:GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            widget.rec9,
-                            style:GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            widget.rec10,
-                            style:GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            widget.rec11,
-                            style:GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            widget.rec12,
-                            style:GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            widget.rec13,
-                            style:GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-
-
-                          SizedBox(
-                            height: 24,
-                          ),
-                          Text(
-                            "COOKING METHOD",
-                            style: GoogleFonts.poppins(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            widget.dec,
-                            style: GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }
-              // builder: (context, controller),
-            )
-            //container for more contents
-          ],
-        ),
+    return MaterialApp(
+      title: 'Dish List',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: APosPage(item),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
+
+
+
+
+
+class APosPage extends StatefulWidget {
+  final item;
+  APosPage(this.item);
+  @override
+  _APosState createState() => _APosState();
+}
+class _APosState extends State<APosPage> {
+
+  DatabaseHelper databaseHelper = DatabaseHelper();
+  List<Dish> dishList;
+  List<Recipe> recList;
+  int count = 0;
+  @override
+  Widget build(BuildContext context) {
+    if (dishList == null) {
+      dishList = List<Dish>();
+      recList = List<Recipe>();
+      updateListView();
+
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title:Text(widget.item),
+        backgroundColor: Colors.orange,
+        centerTitle: true,
+      ),
+      body:
+          getUserListView1(),
+
+    );
+  }
+
+  ListView getUserListView1() {
+
+    return ListView.builder(
+
+      itemCount: count,
+      itemBuilder: (BuildContext context, int position) {
+       int ingr= this.dishList[position].ingr;
+       int cal= this.dishList[position].cal;
+       String name= this.dishList[position].dishname;
+       String image= this.dishList[position].image;
+       String time= this.dishList[position].time;
+       String dec= this.dishList[position].method;
+       String rec1=this.recList[position].rec1;
+       String rec2=this.recList[position].rec2;
+       String rec3=this.recList[position].rec3;
+       String rec4=this.recList[position].rec4;
+       String rec5=this.recList[position].rec5;
+       String rec6=this.recList[position].rec6;
+       String rec7=this.recList[position].rec7;
+       String rec8=this.recList[position].rec8;
+       String rec9=this.recList[position].rec9;
+       String rec10=this.recList[position].rec10;
+       String rec11=this.recList[position].rec11;
+       String rec12=this.recList[position].rec12;
+       String rec13=this.recList[position].rec13;
+
+        return Card(
+          color: Colors.white,
+          elevation: 2.0,
+
+          child: Column(
+          children:[
+            ListTile(
+              title: Text('NAME :    $name' ,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              
+
+
+          ),
+            ListTile(
+              leading: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: 100,
+                  minHeight: 100,
+                  maxWidth: 900,
+                  maxHeight: 900,
+                ),
+                child: Image.network('$image',fit: BoxFit.contain,),
+
+              ),
+            ),
+            ListTile(
+              title: Text('TIME :    $time' ,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('INGREDIENTS :    $ingr',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('CALORIE :    $cal',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('RECIPIES  : \n \n$rec1',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('$rec2',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('$rec3',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('$rec4',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('$rec5',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('$rec6',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('$rec7',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('$rec8',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('$rec9',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('$rec10',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('$rec11',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('$rec12',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('$rec13',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('METHOD : \n \n$dec',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+        ],
+        ),
+
+        );
+      },
+    );
+  }
+
+
+  void updateListView() {
+
+    final Future<dynamic> dbFuture = databaseHelper.initDb();
+    var dish = new Dish(widget.item, null, null, null,null,null);
+    var rec = new Recipe(widget.item, null, null, null,null,null, null, null, null,null,null, null, null, null);
+    dbFuture.then((db) {
+
+      Future<List<Dish>> dishListFuture = databaseHelper.getsearchDishList(dish);
+      Future<List<Recipe>> recListFuture = databaseHelper.getsearchRecList(rec);
+      dishListFuture.then((dishList) {
+        setState(() {
+          this.dishList = dishList;
+          this.count = dishList.length;
+        });
+      }
+      );
+      recListFuture.then((recList) {
+        setState(() {
+          this.recList = recList;
+          this.count = recList.length;
+        });
+      }
+      );
+    });
+  }
+}
+
+

@@ -26,6 +26,7 @@ dependencies:
   sqflite: any
   path_provider: any
   splashscreen: ^1.2.0
+  email_validator: '^1.0.5'
 
 
 

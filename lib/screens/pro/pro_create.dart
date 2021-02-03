@@ -17,7 +17,7 @@ class _procreateState extends State<procreate> {
   final formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  String name,time,rec1,rec2,rec3,rec4,rec5,rec6,method,image,rec7,rec8,rec9,rec10,rec11,rec12,rec13;
+  String name,time,rec1,rec2,rec3,rec4,rec5,rec6,method,image,rec7=' ',rec8=' ',rec9=' ',rec10=' ',rec11=' ',rec12=' ',rec13=' ';
   int ing,cal;
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,6 @@ class _procreateState extends State<procreate> {
           ),
           onPressed: () {
             _submit();
-
           },
         ),
       ),
@@ -362,13 +361,15 @@ class _procreateState extends State<procreate> {
                     ),
                     //fillColor: Colors.green
                   ),
-                  validator: (val) {
+                /*  validator: (val) {
                     if(val.length==0) {
                       return "Cannot be empty";
                     }else{
                       return null;
                     }
                   },
+
+                 */
                   keyboardType: TextInputType.text,
                   onSaved: (val) => rec7 = val,
                   style: GoogleFonts.poppins(
@@ -391,6 +392,7 @@ class _procreateState extends State<procreate> {
                     ),
                     //fillColor: Colors.green
                   ),
+                  /*
                   validator: (val) {
                     if(val.length==0) {
                       return "Cannot be empty";
@@ -398,6 +400,8 @@ class _procreateState extends State<procreate> {
                       return null;
                     }
                   },
+
+                   */
                   keyboardType: TextInputType.text,
                   onSaved: (val) => rec8 = val,
                   style: GoogleFonts.poppins(
@@ -420,6 +424,7 @@ class _procreateState extends State<procreate> {
                     ),
                     //fillColor: Colors.green
                   ),
+                  /*
                   validator: (val) {
                     if(val.length==0) {
                       return "Cannot be empty";
@@ -427,6 +432,8 @@ class _procreateState extends State<procreate> {
                       return null;
                     }
                   },
+
+                   */
                   keyboardType: TextInputType.text,
                   onSaved: (val) => rec9 = val,
                   style: GoogleFonts.poppins(
@@ -449,6 +456,7 @@ class _procreateState extends State<procreate> {
                     ),
                     //fillColor: Colors.green
                   ),
+                  /*
                   validator: (val) {
                     if(val.length==0) {
                       return "Cannot be empty";
@@ -456,6 +464,8 @@ class _procreateState extends State<procreate> {
                       return null;
                     }
                   },
+
+                   */
                   keyboardType: TextInputType.text,
                   onSaved: (val) => rec10 = val,
                   style: GoogleFonts.poppins(
@@ -478,6 +488,7 @@ class _procreateState extends State<procreate> {
                     ),
                     //fillColor: Colors.green
                   ),
+                  /*
                   validator: (val) {
                     if(val.length==0) {
                       return "Cannot be empty";
@@ -485,6 +496,8 @@ class _procreateState extends State<procreate> {
                       return null;
                     }
                   },
+
+                   */
                   keyboardType: TextInputType.text,
                   onSaved: (val) => rec11 = val,
                   style: GoogleFonts.poppins(
@@ -507,6 +520,7 @@ class _procreateState extends State<procreate> {
                     ),
                     //fillColor: Colors.green
                   ),
+                  /*
                   validator: (val) {
                     if(val.length==0) {
                       return "Cannot be empty";
@@ -514,6 +528,8 @@ class _procreateState extends State<procreate> {
                       return null;
                     }
                   },
+
+                   */
                   keyboardType: TextInputType.text,
                   onSaved: (val) => rec12 = val,
                   style: GoogleFonts.poppins(
@@ -536,6 +552,7 @@ class _procreateState extends State<procreate> {
                     ),
                     //fillColor: Colors.green
                   ),
+                  /*
                   validator: (val) {
                     if(val.length==0) {
                       return "Cannot be empty";
@@ -543,6 +560,8 @@ class _procreateState extends State<procreate> {
                       return null;
                     }
                   },
+                  
+                   */
                   keyboardType: TextInputType.text,
                   onSaved: (val) => rec13 = val,
                   style: GoogleFonts.poppins(

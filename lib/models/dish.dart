@@ -36,4 +36,12 @@ class Dish {
     map["image"] = _image;
     return map;
   }
+  Dish.fromMapObject(Map<String, dynamic> map) {
+    this._dishname = map['dishname'];
+    this._time = map['time'];
+    this._cal = map['cal'];
+    this._ingr = map['ingr'];
+    this._method = map['method'];
+    this._image = map['image'];
+  }
 }
