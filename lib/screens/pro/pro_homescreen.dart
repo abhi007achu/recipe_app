@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:recipeapp/screens/beg/beg_dish.dart';
 import 'package:recipeapp/screens/beg/beg_fav.dart';
 import 'package:recipeapp/screens/beg/beg_search.dart';
+import 'package:recipeapp/screens/beg/dish_search.dart';
 import 'package:recipeapp/screens/pro/pro_dish.dart';
 import 'package:recipeapp/screens/pro/pro_fav.dart';
 import 'package:recipeapp/screens/pro/pro_search.dart';
@@ -283,7 +284,7 @@ class _beghomeState extends State<prohome> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => begdish(images[index],foodNames[index],cal[index],ing[index],time[index],rec1[index],rec2[index],rec3[index],rec4[index],rec5[index],rec6[index],rec7[index],rec8[index],rec9[index],rec10[index],rec11[index],rec12[index],rec13[index],dec[index])));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>dapos(foodNames[index])),);
                           },
                           child: AspectRatio(
                               aspectRatio: 0.9 / 1,

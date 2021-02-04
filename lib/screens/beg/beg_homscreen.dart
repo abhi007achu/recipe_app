@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:recipeapp/screens/beg/beg_dish.dart';
 import 'package:recipeapp/screens/beg/beg_fav.dart';
 import 'package:recipeapp/screens/beg/beg_search.dart';
+import 'package:recipeapp/screens/beg/dish_search.dart';
 class beghome extends StatefulWidget {
   @override
   _beghomeState createState() => _beghomeState();
@@ -12,12 +13,12 @@ class _beghomeState extends State<beghome> {
 
   ///Image paths and food names
   final images = [
-    "assets/pics/burger.jpg",
-    "assets/pics/chicken_g.jpg",
-    "assets/pics/chiken_f.jpeg",
-    "assets/pics/pizza.jpg",
-    "assets/pics/seasoned-pasta-salad.jpg",
-    "assets/pics/Wuhan-noodles-zhihu.jpg",
+    "assets/pics/burger.jpg", //https://www.simplyrecipes.com/wp-content/uploads/2018/06/HT-Grill-Burger-LEAD-HORIZONTAL.jpg
+    "assets/pics/chicken_g.jpg",//https://happilyunprocessed.com/wp-content/uploads/2019/04/Best-Grilled-Chicken-.jpg
+    "assets/pics/chiken_f.jpeg",//https://idn.blob.core.windows.net/foodyub/1932334028251181490.jpg
+    "assets/pics/pizza.jpg",//https://img.freepik.com/free-photo/delicious-fresh-pizza-served-wooden-table_127657-159.jpg?size=626&ext=jpg
+    "assets/pics/seasoned-pasta-salad.jpg",//http://incrediblerestaurants.in/manage/uploads/gallery/iA6kEy713C.jpg
+    "assets/pics/Wuhan-noodles-zhihu.jpg",//https://odishatv.in/wp-content/uploads/2016/06/noodles.jpg
   ];
 
   final foodNames = [
@@ -280,7 +281,7 @@ class _beghomeState extends State<beghome> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => begdish(images[index],foodNames[index],cal[index],ing[index],time[index],rec1[index],rec2[index],rec3[index],rec4[index],rec5[index],rec6[index],rec7[index],rec8[index],rec9[index],rec10[index],rec11[index],rec12[index],rec13[index],dec[index])));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>dapos(foodNames[index])),);
                           },
                           child: AspectRatio(
                               aspectRatio: 0.9 / 1,

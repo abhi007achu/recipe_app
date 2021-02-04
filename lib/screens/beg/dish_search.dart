@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:recipeapp/data/database_helper.dart';
 import 'package:recipeapp/models/dish.dart';
 import 'package:recipeapp/models/recipe.dart';
@@ -96,172 +97,160 @@ class _APosState extends State<APosPage> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              
-
 
           ),
             ListTile(
-              leading: ConstrainedBox(
-                constraints: BoxConstraints(
+              leading: SizedBox(
+            /* ConstrainedBox(
+             constraints: BoxConstraints(
                   minWidth: 100,
                   minHeight: 100,
                   maxWidth: 900,
                   maxHeight: 900,
                 ),
+
+              */
+                height: 200.0,
+                width: 200.0,
                 child: Image.network('$image',fit: BoxFit.contain,),
+
+
 
               ),
             ),
             ListTile(
               title: Text('TIME :    $time' ,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('INGREDIENTS :    $ingr',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('CALORIE :    $cal',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('RECIPIES  : \n \n$rec1',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('$rec2',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('$rec3',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('$rec4',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('$rec5',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('$rec6',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('$rec7',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('$rec8',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('$rec9',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('$rec10',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('$rec11',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('$rec12',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('$rec13',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),
             ListTile(
               title: Text('METHOD : \n \n$dec',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                style:GoogleFonts.poppins(
+                    fontSize: 18,
+                    color:Colors.black
                 ),
               ),
             ),

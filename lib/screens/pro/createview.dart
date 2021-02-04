@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:recipeapp/screens/beg/dish_search.dart';
 import 'package:recipeapp/screens/pro/created_dish.dart';
 import 'package:recipeapp/screens/pro/pro_create.dart';
 import 'package:recipeapp/screens/pro/pro_dish.dart';
+import 'package:recipeapp/screens/pro/pro_home.dart';
+import 'package:recipeapp/screens/pro/pro_homescreen.dart';
 class viewcreate extends StatefulWidget {
   final String name,time,method,image,rec1,rec2,rec3,rec4,rec5,rec6,rec7,rec8,rec9,rec10,rec11,rec12,rec13;
   final int cal,ing;
@@ -54,6 +57,7 @@ class _viewcreateState extends State<viewcreate> {
                   children: <Widget>[
                     _specialistsCardInfo5(),
                     _specialistsCardInfo2(),
+                    _specialistsCardInfo1(),
                     // _specialistsCardInfo3(),
                     //_specialistsCardInfo4(),
 
@@ -183,7 +187,7 @@ class _viewcreateState extends State<viewcreate> {
                   ),
                   RaisedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>crtdish(widget.name,widget.time,widget.cal,widget.ing,widget.method,widget.image,widget.rec1,widget.rec2,widget.rec3,widget.rec4,widget.rec5,widget.rec6,widget.rec7,widget.rec8,widget.rec9,widget.rec10,widget.rec11,widget.rec12,widget.rec13)),);
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>dapos(widget.name)),);
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(80.0)),
@@ -257,6 +261,62 @@ class _viewcreateState extends State<viewcreate> {
                         alignment: Alignment.center,
                         child: const Text(
                           'Create',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 20,
+                              color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          //Icon(
+          // LineAwesomeIcons.heart,
+          //  color: lightColor,
+          //  size: 36,
+          //),
+        ],
+      ),
+    );
+  }
+  Widget _specialistsCardInfo1() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+      alignment: Alignment.center,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  RaisedButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>proHomeScreen()),);
+                    },
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80.0)),
+                    padding: const EdgeInsets.all(5.0),
+                    child: Ink(
+                      decoration: const BoxDecoration(
+                        gradient: purpleGradient,
+                        borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                      ),
+                      child: Container(
+                        constraints: const BoxConstraints(
+                            minWidth: 300.0,
+                            minHeight: 40.0), // min sizes for Material buttons
+                        alignment: Alignment.center,
+                        child: const Text(
+                          'Back',
                           style: TextStyle(
                               fontWeight: FontWeight.w300,
                               fontSize: 20,
